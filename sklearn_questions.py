@@ -156,7 +156,7 @@ class RegistrationSplit(BaseCrossValidator):
         idx_test : ndarray
             The testing set indices for that split.
         """
-        if X['registration_month'].dtype != 'datetime64[ns]':
+        if not pd.api.types.is_datetime64_any_dtype(X['registration_month']):
             raise ValueError('not datetimes')
         n_samples = X.shape[0]
         all_indices = np.arange(n_samples)
